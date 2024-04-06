@@ -1,0 +1,50 @@
+<!-- Botón para abrir el modal -->
+
+
+<!-- Modal -->
+<div class="modal modal-lg fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" *ngIf="vistaActual === 'vista1'">Productos Seleccionados
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" *ngIf="vistaActual === 'vista1'">
+                <div *ngIf="listProducts.length === 0; else data">
+                    <p>No hay productos seleccionados.</p>
+                </div>
+                <ng-template #data>
+                    <div *ngFor="let product of listProducts; let i = index">
+                        <div class="row text-center product-row">
+                            <div class="col">
+                                <img [src]="product.imageURL" alt="" class="product-image">
+                            </div>
+                            <div class="col product-details">
+                                <p class="product-name">{{product.name}}</p>
+                                <p>{{product.description}}</p>
+                            </div>
+                            <div class="col-4 product-quantity">
+                                <p class="product-cant">Cantidad</p>
+                                <input type="number" class="form-control" placeholder="Ingrese cantidad"
+                                    [(ngModel)]="selectedQuantities[i]" (change)="onQuantityChange(i)" min="0">
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </div>
+
+            <div class="modal-body" *ngIf="vistaActual === 'vista2'">
+                <app-invoce [listProducts]=listProducts [selectedQuantities]="selectedQuantities"></app-invoce>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary rounded-pill " data-bs-dismiss="modal"
+                    (click)="reset('vista1')">Cerrar</button>
+                <button *ngIf="vistaActual === 'vista1'" class="btn btn-primary rounded-pill"
+                    (click)="confirmSelections('vista2')">Comprar</button>
+
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="content mt-4">
+  <h2 class="text-center mb-4">Listado de productos</h2>
+  <div class="row">
+    <div *ngFor="let product of products" class="col-lg-4 col-md-6 col-sm-12 mb-4">
+      <div class="card product-card animate__animated animate__flipInX">
+        <div class="row g-0">
+          <div class="col-xl-4 col-lg-12 col-md-12  col-12 text-center">
+            <img [src]="product.imageURL" class="rounded-start te" width="250px" height="250px"
+              alt="{{ product.name }}">
+          </div>
+          <div class="col-xl-8 col-lg-12 col-md-12  col-12">
+            <div class="card-body">
+              <h5 class="card-title">{{ product.name }}</h5>
+              <span class="card-text"><small class="text-muted">Serial: {{ product._id }}</small></span>
+              <p class="card-text m-0">{{ product.description }}</p>
+              <p *ngIf="CantAlert(product.cant)" style="color: red" class="card-text m-0">¡Cuidado! Cantidad baja!</p>
+              <p class="card-text m-0">Cantidad: {{product.cant}}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <h5 class="text-secondary m-0">${{ product.price | number:'1.0-0' }}</h5>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary"
+                    [routerLink]="['/dashboard/product/edit', product._id]">Editar</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary"
+                    (click)="deleteProduct(product._id!)">Eliminar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

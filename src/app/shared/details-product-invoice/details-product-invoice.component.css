@@ -1,0 +1,39 @@
+.product-row {
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+}
+
+.product-image {
+  height: 150px;
+  max-width: 100%;
+}
+
+.product-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.product-name {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.product-cant {
+  font-weight: bold;
+  margin-bottom: 3px;
+}
+
+.product-quantity {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.quantity-input {
+  width: 100%;
+  padding: 8px; /* Añadimos un relleno */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px; /* Tamaño de fuente igual al de los otros textos */
+}

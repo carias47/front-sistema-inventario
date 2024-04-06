@@ -1,0 +1,23 @@
+.product-card {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.product-card:hover {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Agrega una sombra suave */
+  transform: scale(1.05); /* Escala la tarjeta al 105% de su tamaño original */
+}
+
+@media (min-width: 1200px) {
+  .product-card {
+    padding: 10px; /* Reducir el padding en pantallas grandes para evitar que los elementos se vean demasiado separados */
+  }
+
+  img {
+    width: 100%; /* Utilizar el ancho completo disponible para la imagen */
+    height: 150px; /* Mantener la proporción de la imagen */
+    max-width: 250px; /* Establecer un máximo de ancho para evitar que la imagen se vea demasiado grande */
+  }
+}

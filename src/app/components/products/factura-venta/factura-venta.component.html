@@ -1,0 +1,34 @@
+<h2 class="mb-4 text-center mt-4">Venta de productos</h2>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th></th> <!-- Casilla de verificación -->
+                <th>codigo</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <!-- Agrega más columnas según tus necesidades -->
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of listDataProducts; let i = index">
+                <td><input type="checkbox" (change)="toggleSelection(i)"></td> <!-- Casilla de verificación -->
+                <td>{{item._id}}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.description }}</td>
+                <td>{{item.cant}}</td>
+                <td>{{item.price | number:'1.0-0'}}</td>
+                <!-- Muestra más propiedades según tus necesidades -->
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<button (click)="showSelectedProducts()" type="button" class="btn btn-primary rounded-pill float-end"
+    data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Continuar
+</button>
+<app-details-product-invoice [listProducts]="selectedProducts"></app-details-product-invoice>

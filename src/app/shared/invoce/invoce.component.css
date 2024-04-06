@@ -1,0 +1,28 @@
+.invoice-list {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+.invoice-item {
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+.invoice-item:last-child {
+  margin-bottom: 0;
+}
+.invoice-item-details {
+  margin-left: 10px;
+}
+.invoice-item-details div {
+  margin-bottom: 5px;
+}
+.invoice-item-details strong {
+  color: #333;
+}
+.invoice-total {
+  margin-top: 20px;
+}

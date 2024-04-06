@@ -1,0 +1,61 @@
+<div class="container">
+    <h1 class="text-center">Factura</h1>
+    <div class="invoice-content">
+        <!-- Tabla visible en pantallas grandes -->
+        <div class="invoice-table d-none d-lg-block">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr class="text-center">
+                            <th>Código</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Cantidad</th>
+                            <th>Precio</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of listProducts; let i = index">
+                            <td>{{ item._id }}</td>
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.description }}</td>
+                            <td>{{selectedQuantities[i] || 0}}</td>
+                            <td>{{ item.price | number:'1.0-0' }}</td>
+                            <td>{{ (selectedQuantities[i] || 0) * item.price | number:'1.0-0' }}</td>
+                            <!-- Calcula el total del ítem -->
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5" style="text-align: right;">
+                                Total:<br><strong><small>(iva incluido)</small></strong>
+                            </td>
+                            <td>{{ calcularTotal() | number:'1.0-0' }}</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        <!-- Lista visible en pantallas móviles -->
+        <div class="invoice-list d-lg-none">
+            <div *ngFor="let item of listProducts; let i = index" class="invoice-item">
+                <div class="invoice-item-details">
+                    <div><strong>Código:</strong> {{ item._id }}</div>
+                    <div><strong>Nombre:</strong> {{ item.name }}</div>
+                    <div><strong>Descripción:</strong> {{ item.description }}</div>
+                    <div><strong>Cantidad:</strong> {{ selectedQuantities[i] || 0 }}</div>
+                    <div><strong>Precio:</strong> {{ item.price | number:'1.0-0' }}</div>
+                    <div><strong>Total:</strong> {{ (selectedQuantities[i] || 0) * item.price | number:'1.0-0' }}</div>
+                    <!-- Calcula el total del ítem -->
+                </div>
+
+            </div>
+
+        </div>
+        <div class="invoice-total text-center">
+            <h5 class="mb-0">Total:</h5><strong><small>(iva incluido)</small></strong>
+            <h4>$ {{ calcularTotal() | number:'1.0-0' }}</h4>
+        </div>
+    </div>
+</div>
