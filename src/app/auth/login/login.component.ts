@@ -48,7 +48,6 @@ export class LoginComponent {
       this.authService
         .login(email, password)
         .then((resp) => {
-          console.log(resp)
           this.router.navigate(['/dashboard/list-products'])
         })
         .catch((err) => {

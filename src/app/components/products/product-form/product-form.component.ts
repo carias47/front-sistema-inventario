@@ -3,6 +3,7 @@ import { Product } from '../interfaces/product.interface'
 import { ProductService } from '../services/product.service'
 import { Router, ActivatedRoute } from '@angular/router'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { ToastrService } from 'ngx-toastr'
 
 @Component({
   selector: 'app-product-form',
@@ -10,7 +11,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./product-form.component.css'],
 })
 export class ProductFormComponent {
-  product!: Product
+  product: Product = {
+    _id: '66118c7b093b3384cfab49bd',
+    name: 'dfsdf',
+    description: 'dsfsdfsd',
+    cant: 10,
+    price: 10,
+    imageURL: 'dsfsdf',
+  }
   public FormRegister: FormGroup = this.fb.group({
     name: ['', [Validators.required, Validators.maxLength(50)]],
     description: ['', [Validators.required, Validators.maxLength(200)]],
@@ -24,7 +32,8 @@ export class ProductFormComponent {
     private productService: ProductService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {
@@ -80,13 +89,16 @@ export class ProductFormComponent {
     )
   }
   updateProduct() {
-    delete this.FormRegister.value.createdAt
+    // delete this.FormRegister.value.createdAt
+
     this.productService.updateProduct(this.product._id!, this.FormRegister.value).subscribe(
-      (resp) => {
-        this.router.navigate(['/dashboard/list-products'])
+      (updatedProduct) => {
+        this.toastr.success('Producto actualizado', 'Exito')
+        this.router.navigate(['/dashboard'])
       },
-      (err) => {
-        console.log(err)
+      (error) => {
+        console.error('Error al actualizar el producto:', error)
+        // Mostrar mensaje de error al usuario o realizar acciones adicionales según el error
       }
     )
   }

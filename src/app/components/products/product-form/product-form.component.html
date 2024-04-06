@@ -22,7 +22,7 @@
         <div class="mb-3">
           <label for="cant" class="form-label">Cantidad:</label>
           <input type="number" class="form-control rounded-pill" formControlName="cant" />
-          <small *ngIf="isNotValidField('price')" class="form-text text-danger">{{
+          <small *ngIf="isNotValidField('cant')" class="form-text text-danger">{{
             getFieldError("cant") }}
           </small>
         </div>
